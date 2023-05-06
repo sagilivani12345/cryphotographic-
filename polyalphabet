@@ -1,0 +1,19 @@
+import string
+def poly_sub_cipher(plaintext, key):
+    plaintext = plaintext.lower()
+    key = key.lower()
+    alphabet = string.ascii_lowercase
+    ciphertext = ''
+    for i, char in enumerate(plaintext):
+        key_char = key[i % len(key)]
+        shift = alphabet.index(key_char)
+        shifted_alphabet = alphabet[shift:] + alphabet[:shift]
+        if char in alphabet:
+            ciphertext += shifted_alphabet[alphabet.index(char)]
+        else:
+            ciphertext += char
+    return ciphertext
+plaintext = 'GEEKSFORGEEKS'
+key = 'AYUSH'
+ciphertext = poly_sub_cipher(plaintext, key)
+print(ciphertext)
